@@ -80,9 +80,9 @@ class App extends React.Component {
       <div className="App">
         <div className="body jumbotron-image">
         <h1 className="app-title">Office Quiz</h1>
-        <p style={{display: this.state.gameState ? 'flex' : 'none'}}>Who said the following:</p>
+        <p style={{display: this.state.gameState ? '' : 'none'}}>Who said the following:</p>
         <div className={`ui ${this.state.isLoading} inline loader`}></div>
-        <div style={{display: this.state.gameState ? 'inline' : 'none'}} className="random-quote">{this.state.randomQuote}</div>
+        <div style={{display: this.state.gameState ? 'flex' : 'none'}} className="random-quote">{this.state.randomQuote}</div>
         <form onSubmit={this.handleCheckAnswer}>
         <label>
           <select
