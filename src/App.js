@@ -9,13 +9,15 @@ class App extends React.Component {
     isLoading: "active",
     score: 0,
     questionCount: 0,
-    gameState: true
+    gameState: true,
+    gameOverMessage: ""
   }
 
   getNewQuestion = () => {
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const targetUrl = 'https://officeapi.dev/api/quotes/random';
-      fetch (proxyUrl + targetUrl)
+    // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    // const proxyURL = 'https://yacdn.org/proxy/';
+    const targetUrl = '/api/quotes/random';
+      fetch (targetUrl)
         .then(response => response.json())
         .then(response => {
           this.setState((prevState) => ({ 
@@ -56,23 +58,29 @@ class App extends React.Component {
         score: prevState.score +1
       }));
     }
-    this.getNewQuestion();
     this.checkGameState();
-    this.handleGameOverMessage();
+    this.getNewQuestion();
     this.setState(
       { 
         randomQuote: [],
         isLoading: 'active'
       });
+    this.handleGameOverMessage();
   }
 
   handleGameOverMessage = () => {
-    if(!this.state.gameState && this.state.score === 5) {
-      console.log('Fantastic');
-    } else if(!this.state.gameState) {
-      console.log('Try again');
+    if(this.state.score === 4) {
+      this.setState(
+        {
+          gameOverMessage: "Fantastic!"
+        });
+    } else if(this.state.score < 4) {
+      this.setState(
+        {
+          gameOverMessage: "Game Over. Try Again"
+        })
     }
-    console.log('handleGameOverMessage');
+    // console.log('handleGameOverMessage', this.state.gameState, this.state.score);
   }
 
   render() {
@@ -117,6 +125,8 @@ class App extends React.Component {
         </form>
           <div>
             <h2 className="score">Score: {this.state.score}</h2>
+            {/* {this.state.score > 4 && !this.state.gameState ? 'Fantastic' : ''} */}
+            {!this.state.gameState ? this.state.gameOverMessage : ''}
           </div>
         </div>
       </div>
