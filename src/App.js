@@ -16,7 +16,7 @@ class App extends React.Component {
   getNewQuestion = () => {
     // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     // const proxyURL = 'https://yacdn.org/proxy/';
-    const targetUrl = 'https://officeapi.dev/api/quotes/random';
+    const targetUrl = '/api/quotes/random';
       fetch (targetUrl)
         .then(response => response.json())
         .then(response => {
