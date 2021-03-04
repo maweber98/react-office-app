@@ -18,7 +18,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"cd node_modules/cors-anywhere/lib/ && npm run start\"",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "build:prod": "webpack -p –env production",
     "heroku-postbuild": "npm run build:prod",
