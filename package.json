@@ -2,13 +2,15 @@
   "name": "office-quiz-app",
   "version": "0.1.0",
   "private": true,
-  "proxy":"https://officeapi.dev",
+  "proxy": "https://officeapi.dev",
   "homepage": "https://react-office-game.herokuapp.com/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
+    "concurrently": "^6.0.0",
+    "cors-anywhere": "^0.4.3",
     "express": "^4.17.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -16,7 +18,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"react-scripts start\" \"cd node_modules/cors-anywhere/lib/ && npm run start\"",
     "build": "react-scripts build",
     "build:prod": "webpack -p –env production",
     "heroku-postbuild": "npm run build:prod",
